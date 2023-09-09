@@ -1,0 +1,3 @@
+# Shift + Alt + F: Make window fullscreen and raise.
+# Raise is needed when using focus_follows_mouse=autofocus
+shift + alt - f : yabai -m window --toggle zoom-fullscreen; yabai -m window --focus mouse
