@@ -1,8 +1,10 @@
 PATH=$PATH:$HOME/fvm/default/bin:$HOME/.cargo/bin
 eval "$(starship init zsh)"
 
-source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
-source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
+if [ -d "$(brew --prefix)/share/google-cloud-sdk" ]; then
+    source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
+    source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
+fi
 
 alias finstall="fvm install"
 alias fget="fvm flutter pub get"
@@ -13,6 +15,7 @@ alias fclean="fvm flutter clean"
 alias fanalyze="fvm flutter analyze"
 alias fupgrade="fvm flutter pub upgrade"
 alias flocgen="fvm flutter pub run easy_localization:generate --source-dir ./assets/translations -f keys -o locale_keys.g.dart"
+alias fl10n="fvm flutter gen-l10n"
 alias frgen="flutter_rust_bridge_codegen --rust-input rust/src/dart_bridge/api.rs --dart-output lib/rust_bridge/library_api.generated.dart --rust-output rust/src/dart_bridge/ffi_exports.rs --c-output macos/Runner/bridge_generated.h --skip-add-mod-to-lib --no-build-runner"
 
 alias gfd="git fetch origin development:development"
