@@ -41,3 +41,10 @@ fi
 eval $(thefuck --alias)
 eval "$(fnm env --use-on-cd)"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+# bun completions
+[ -s "/Users/sanderinthout/.bun/_bun" ] && source "/Users/sanderinthout/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
