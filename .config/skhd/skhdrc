@@ -2,3 +2,10 @@
 # Raise is needed when using focus_follows_mouse=autofocus
 shift + alt - f: yabai -m window --toggle zoom-fullscreen; yabai -m window --focus mouse
 cmd - return: /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
+
+shift + alt - o : yabai -m window --toggle split
+
+cmd + alt - up : yabai -m window --warp north
+cmd + alt - down : yabai -m window --warp south
+cmd + alt - right : yabai -m window --warp east
+cmd + alt - left : yabai -m window --warp west

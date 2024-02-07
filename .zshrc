@@ -1,4 +1,9 @@
-PATH=$PATH:$HOME/fvm/default/bin:$HOME/.cargo/bin
+# Fix Android Studio pod errors
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+PATH=$PATH:$HOME/fvm/default/bin:$HOME/.cargo/bin:$HOME/.pub-cache/bin:$HOME/Library/Android/sdk/platform-tools
 eval "$(starship init zsh)"
 
 if [ -d "$(brew --prefix)/share/google-cloud-sdk" ]; then
@@ -26,8 +31,8 @@ alias gpushf="git push --force-with-lease"
 alias gcd="git checkout development"
 alias gdelmerged="git branch --merged | egrep -v \"(^\*|master|main|development)\" | xargs git branch -d"
 
-bindkey  "^[[H"   beginning-of-line
-bindkey  "^[[F"   end-of-line
+bindkey "^[[H"   beginning-of-line
+bindkey "^[[F"   end-of-line
 bindkey "^[^[[C" forward-word
 bindkey "^[^[[D" backward-word
 
@@ -48,3 +53,19 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# git repository greeter
+last_repository=
+check_directory_for_new_repository() {
+	current_repository=$(git rev-parse --show-toplevel 2> /dev/null)
+	
+	if [ "$current_repository" ] && \
+	   [ "$current_repository" != "$last_repository" ]; then
+		onefetch
+	fi
+	last_repository=$current_repository
+}
+cd() {
+	builtin cd "$@"
+	check_directory_for_new_repository
+}
